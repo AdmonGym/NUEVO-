@@ -18,14 +18,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Paula
  */
-public class Informacion_cliente extends javax.swing.JDialog {
+public class Informacion_personal2 extends javax.swing.JDialog {
 
     private DefaultTableModel modelo;
 
     /**
      * Creates new form Informacion_cliente
      */
-    public Informacion_cliente(java.awt.Frame parent, boolean modal) {
+    public Informacion_personal2(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         cargartabla();
@@ -36,7 +36,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
     }
 
     void Busqueda(String valor) {
-        String[] titulos = {"ID", "Nombre", "ApellidoP", "ApellidoM", "Calle", "#", "Col", "Del", "CP", "TEL"};
+        String[] titulos = {"ID", "Nombre", "ApellidoP", "ApellidoM", "Calle", "#", "Col", "Del", "CP", "Tel", "Cargo"};
         String[] registro = new String[10];
         String sSQL = "";
         modelo = new DefaultTableModel(null, titulos);
@@ -44,14 +44,14 @@ public class Informacion_cliente extends javax.swing.JDialog {
         ConexionMysql mysql = new ConexionMysql();
         com.mysql.jdbc.Connection cn = (com.mysql.jdbc.Connection) mysql.Conectar();
 
-        sSQL = "SELECT IDCliente,Nombres,ApellidoPaterno,ApellidoMaterno,Calle,Numero,Colonia,Delegacion,CP,Telefono FROM cliente "
+        sSQL = "SELECT IDEmpleado,Nombres,ApellidoPaterno,ApellidoMaterno,Calle,Numero,Colonia,Delegacion,CP,Telefono,Cargo FROM empleado "
                 + "WHERE CONCAT(Nombres, ' ',ApellidoPaterno) LIKE '%" + valor + "%'";
         try {
             com.mysql.jdbc.Statement st = (com.mysql.jdbc.Statement) cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
 
             while (rs.next()) {
-                registro[0] = rs.getString("IDCliente");
+                registro[0] = rs.getString("IDEmpleado");
                 registro[1] = rs.getString("Nombres");
                 registro[2] = rs.getString("ApellidoPaterno");
                 registro[3] = rs.getString("ApellidoMaterno");
@@ -61,6 +61,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
                 registro[7] = rs.getString("Delegacion");
                 registro[8] = rs.getString("CP");
                 registro[9] = rs.getString("Telefono");
+                registro[10] = rs.getString("Cargo");
                 modelo.addRow(registro);
             }
             tblDatos.setModel(modelo);
@@ -72,18 +73,18 @@ public class Informacion_cliente extends javax.swing.JDialog {
     }
 
     void cargartabla() {
-        String[] titulos = {"ID", "Nombre", "ApellidoP", "ApellidoM", "Calle", "#", "Col", "Del", "CP", "TEL"};
-        String[] registro = new String[10];
+        String[] titulos = {"ID", "Nombre", "ApellidoP", "ApellidoM", "Calle", "#", "Col", "Del", "CP", "TEL,CARGO"};
+        String[] registro = new String[11];
         DefaultTableModel modelo;
         modelo = new DefaultTableModel(null, titulos);
         ConexionMysql mysql = new ConexionMysql();
         Connection cn = mysql.Conectar();
         try {
 
-            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("SELECT IDCliente,Nombres,ApellidoPaterno,ApellidoMaterno,Calle,Numero,Colonia,Delegacion,CP,Telefono FROM cliente");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("SELECT IDEmpleado,Nombres,ApellidoPaterno,ApellidoMaterno,Calle,Numero,Colonia,Delegacion,CP,Telefono,Cargo FROM empleado");
             ResultSet res = pst.executeQuery();
             while (res.next()) {
-                registro[0] = res.getString("IDCliente");
+                registro[0] = res.getString("IDEmpleado");
                 registro[1] = res.getString("Nombres");
                 registro[2] = res.getString("ApellidoPaterno");
                 registro[3] = res.getString("ApellidoMaterno");
@@ -93,6 +94,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
                 registro[7] = res.getString("Delegacion");
                 registro[8] = res.getString("CP");
                 registro[9] = res.getString("Telefono");
+                registro[10] = res.getString("Cargo");
 
                 modelo.addRow(registro);
             }
@@ -118,7 +120,6 @@ public class Informacion_cliente extends javax.swing.JDialog {
         panelImage1 = new org.edisoncor.gui.panel.PanelImage();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
         textNOMBRES = new org.edisoncor.gui.textField.TextField();
         jLabel14 = new javax.swing.JLabel();
         textPATERNO = new org.edisoncor.gui.textField.TextField();
@@ -140,6 +141,9 @@ public class Informacion_cliente extends javax.swing.JDialog {
         textELIMINAR = new org.edisoncor.gui.textField.TextField();
         btnNUEVO = new javax.swing.JButton();
         btnCERRAR = new javax.swing.JButton();
+        textCARGO = new org.edisoncor.gui.textField.TextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -195,7 +199,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
             }
         });
 
-        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES_REDISEÑO/LETRERO-CLIENTES.png"))); // NOI18N
+        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES_REDISEÑO/LETRERO-PERSONAL.png"))); // NOI18N
 
         javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
         panelImage1.setLayout(panelImage1Layout);
@@ -221,10 +225,6 @@ public class Informacion_cliente extends javax.swing.JDialog {
         ));
         jScrollPane2.setViewportView(tblDatos);
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(200, 216, 252));
-        jLabel2.setText(org.openide.util.NbBundle.getMessage(Informacion_cliente.class, "MODCLI.jLabel2.text")); // NOI18N
-
         textNOMBRES.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textNOMBRESActionPerformed(evt);
@@ -233,7 +233,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(200, 216, 252));
-        jLabel14.setText(org.openide.util.NbBundle.getMessage(Informacion_cliente.class, "MODCLI.jLabel14.text")); // NOI18N
+        jLabel14.setText(org.openide.util.NbBundle.getMessage(Informacion_personal2.class, "MODCLI.jLabel14.text")); // NOI18N
 
         textPATERNO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,13 +243,13 @@ public class Informacion_cliente extends javax.swing.JDialog {
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(200, 216, 252));
-        jLabel12.setText(org.openide.util.NbBundle.getMessage(Informacion_cliente.class, "MODCLI.jLabel12.text")); // NOI18N
+        jLabel12.setText(org.openide.util.NbBundle.getMessage(Informacion_personal2.class, "MODCLI.jLabel12.text")); // NOI18N
 
-        textMATERNO.setText(org.openide.util.NbBundle.getMessage(Informacion_cliente.class, "MODCLI.textMATERNO.text")); // NOI18N
+        textMATERNO.setText(org.openide.util.NbBundle.getMessage(Informacion_personal2.class, "MODCLI.textMATERNO.text")); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(200, 216, 252));
-        jLabel6.setText(org.openide.util.NbBundle.getMessage(Informacion_cliente.class, "MODCLI.jLabel6.text")); // NOI18N
+        jLabel6.setText(org.openide.util.NbBundle.getMessage(Informacion_personal2.class, "MODCLI.jLabel6.text")); // NOI18N
 
         textCALLE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,7 +259,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(200, 216, 252));
-        jLabel15.setText(org.openide.util.NbBundle.getMessage(Informacion_cliente.class, "MODCLI.jLabel15.text")); // NOI18N
+        jLabel15.setText(org.openide.util.NbBundle.getMessage(Informacion_personal2.class, "MODCLI.jLabel15.text")); // NOI18N
 
         textNUM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -269,7 +269,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
 
         jLabel16.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(200, 216, 252));
-        jLabel16.setText(org.openide.util.NbBundle.getMessage(Informacion_cliente.class, "MODCLI.jLabel16.text")); // NOI18N
+        jLabel16.setText(org.openide.util.NbBundle.getMessage(Informacion_personal2.class, "MODCLI.jLabel16.text")); // NOI18N
 
         textCOL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,7 +279,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(200, 216, 252));
-        jLabel11.setText(org.openide.util.NbBundle.getMessage(Informacion_cliente.class, "MODCLI.jLabel11.text")); // NOI18N
+        jLabel11.setText(org.openide.util.NbBundle.getMessage(Informacion_personal2.class, "MODCLI.jLabel11.text")); // NOI18N
 
         textDELG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,7 +289,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(200, 216, 252));
-        jLabel17.setText(org.openide.util.NbBundle.getMessage(Informacion_cliente.class, "MODCLI.jLabel17.text")); // NOI18N
+        jLabel17.setText(org.openide.util.NbBundle.getMessage(Informacion_personal2.class, "MODCLI.jLabel17.text")); // NOI18N
 
         textCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,7 +299,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(200, 216, 252));
-        jLabel5.setText(org.openide.util.NbBundle.getMessage(Informacion_cliente.class, "MODCLI.jLabel5.text")); // NOI18N
+        jLabel5.setText(org.openide.util.NbBundle.getMessage(Informacion_personal2.class, "MODCLI.jLabel5.text")); // NOI18N
 
         textTEL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -346,6 +346,16 @@ public class Informacion_cliente extends javax.swing.JDialog {
             }
         });
 
+        textCARGO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCARGOActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Cargo");
+
+        jLabel3.setText(" Nombre(S)");
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -358,34 +368,6 @@ public class Informacion_cliente extends javax.swing.JDialog {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textNOMBRES, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addGap(114, 114, 114)
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textPATERNO, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel12)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textMATERNO, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnMODIFICAR)
-                                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addGroup(panel1Layout.createSequentialGroup()
-                                                    .addComponent(jLabel16)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(textCOL, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(panel1Layout.createSequentialGroup()
-                                                    .addComponent(jLabel5)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(textTEL, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panel1Layout.createSequentialGroup()
@@ -431,7 +413,42 @@ public class Informacion_cliente extends javax.swing.JDialog {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnCERRAR)
-                                        .addGap(40, 40, 40)))))))
+                                        .addGap(40, 40, 40))))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(45, 45, 45)
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(textCARGO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(jLabel3)
+                                        .addGap(60, 60, 60)
+                                        .addComponent(textNOMBRES, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(114, 114, 114)
+                                        .addComponent(jLabel14)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textPATERNO, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textMATERNO, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnMODIFICAR)
+                                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addGroup(panel1Layout.createSequentialGroup()
+                                                    .addComponent(jLabel16)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(textCOL, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(panel1Layout.createSequentialGroup()
+                                                    .addComponent(jLabel5)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(textTEL, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))))))))
                 .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
@@ -439,7 +456,11 @@ public class Informacion_cliente extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addGap(18, 18, 18)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textCARGO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(33, 33, 33)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(textELIMINAR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -450,11 +471,11 @@ public class Informacion_cliente extends javax.swing.JDialog {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(textNOMBRES, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)
                                     .addComponent(jLabel14)
                                     .addComponent(textPATERNO, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12)
-                                    .addComponent(textMATERNO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(textMATERNO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
                                 .addGap(18, 18, 18)
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(textCALLE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -514,7 +535,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
 
     private void btnELIMINARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnELIMINARActionPerformed
         String valor =textELIMINAR.getText();
-        String sql = "DELETE FROM cliente WHERE IDCliente =("+valor+")" ; 
+        String sql = "DELETE FROM empleado WHERE IDEmpleado =("+valor+")" ; 
         ConexionMysql mysql = new ConexionMysql();
         Connection coneccion = (Connection) mysql.Conectar();
         try {
@@ -578,8 +599,9 @@ public class Informacion_cliente extends javax.swing.JDialog {
         String delegacion = textDELG.getText();
         String cp = textCP.getText();
         String telefono = textTEL.getText();
+        String cargo = textCARGO.getText();
         try {
-            PreparedStatement pstm = cn.prepareStatement("insert into cliente(Nombres,ApellidoPaterno,ApellidoMaterno,Calle,Numero,Colonia,Delegacion,CP,Telefono) VALUES (?,?,?,?,?,?,?,?,?)");
+            PreparedStatement pstm = cn.prepareStatement("insert into empleado(Nombres,ApellidoPaterno,ApellidoMaterno,Calle,Numero,Colonia,Delegacion,CP,Telefono,Cargo) VALUES (?,?,?,?,?,?,?,?,?,?)");
             
             pstm.setString(1, textNOMBRES.getText());
             pstm.setString(2, textPATERNO.getText());
@@ -590,6 +612,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
             pstm.setString(7, textDELG.getText());
             pstm.setString(8, textCP.getText());
             pstm.setString(9, textTEL.getText());
+            pstm.setString(10, textCARGO.getText());
             pstm.execute();
             pstm.close();
             JOptionPane.showMessageDialog(null, "Los Datos han sido guardados");
@@ -597,7 +620,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
             textCOL.setText("");
             textCP.setText("");
             textELIMINAR.setText("");
-            
+            textCARGO.setText("");
             textMATERNO.setText("");
             textNOMBRES.setText("");
             textNUM.setText("");
@@ -618,7 +641,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
 
     private void btnMODIFICARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMODIFICARActionPerformed
         cerrar();
-        MODCLI dialog = new MODCLI(new javax.swing.JFrame(), true);
+        MODPER dialog = new MODPER(new javax.swing.JFrame(), true);
         dialog.setTitle("MODIFICAR DATOS");
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
@@ -632,7 +655,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
     private void btnCERRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCERRARActionPerformed
         cerrar();
         Menu m = new Menu();
-        m.setTitle("CLIENTES");
+        m.setTitle("PERSONAL");
         m.setLocationRelativeTo(null);
         m.setVisible(true);
     }
@@ -640,6 +663,10 @@ public class Informacion_cliente extends javax.swing.JDialog {
     private void cerrar() {
         this.setVisible(false);
     }//GEN-LAST:event_btnCERRARActionPerformed
+
+    private void textCARGOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCARGOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCARGOActionPerformed
 
     /**
      * @param args the command line arguments
@@ -658,20 +685,21 @@ public class Informacion_cliente extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Informacion_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informacion_personal2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Informacion_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informacion_personal2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Informacion_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informacion_personal2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Informacion_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Informacion_personal2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Informacion_cliente dialog = new Informacion_cliente(new javax.swing.JFrame(), true);
+                Informacion_personal2 dialog = new Informacion_personal2(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -690,13 +718,14 @@ public class Informacion_cliente extends javax.swing.JDialog {
     private javax.swing.JButton btnGUARDAR;
     private javax.swing.JButton btnMODIFICAR;
     private javax.swing.JButton btnNUEVO;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
@@ -704,6 +733,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
     private org.edisoncor.gui.panel.PanelImage panelImage1;
     private javax.swing.JTable tblDatos;
     private org.edisoncor.gui.textField.TextField textCALLE;
+    private org.edisoncor.gui.textField.TextField textCARGO;
     private org.edisoncor.gui.textField.TextField textCOL;
     private org.edisoncor.gui.textField.TextField textCP;
     private org.edisoncor.gui.textField.TextField textDELG;
@@ -715,29 +745,14 @@ public class Informacion_cliente extends javax.swing.JDialog {
     private org.edisoncor.gui.textField.TextField textTEL;
     // End of variables declaration//GEN-END:variables
 
-    private void ELIMINAR(String valor) {
-        String sql = "DELETE FROM contactos WHERE idpersona =(" + valor + ")";
-        ConexionMysql mysql = new ConexionMysql();
-        Connection coneccion = (Connection) mysql.Conectar();
-        try {
-            Statement instruccion = (Statement) coneccion.createStatement();
-            boolean borrado = instruccion.execute(sql);
-
-            if (borrado = true) {
-                JOptionPane.showMessageDialog(null, "Se Ha Eliminado Exitosamente");
-            } else {
-                JOptionPane.showMessageDialog(null, "El ID Ingresado no Existe");
-            }
-        } catch (SQLException ex) {
-        }
-    }
+    
 
     private void HABILITAR() {
         textCALLE.setEnabled(true);
         textCOL.setEnabled(true);
         textCP.setEnabled(true);
         textELIMINAR.setEnabled(true);
-        
+        textCARGO.setEnabled(true);
         textMATERNO.setEnabled(true);
         textNOMBRES.setEnabled(true);
         textNUM.setEnabled(true);
@@ -751,7 +766,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
         textCOL.setText("");
         textCP.setText("");
         textELIMINAR.setText("");
-        
+        textCARGO.setText("");
         textMATERNO.setText("");
         textNOMBRES.setText("");
         textNUM.setText("");
@@ -765,7 +780,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
         textCOL.setEnabled(false);
         textCP.setEnabled(false);
         
-        
+        textCARGO.setEnabled(false);
         textMATERNO.setEnabled(false);
         textNOMBRES.setEnabled(false);
         textNUM.setEnabled(false);
@@ -778,6 +793,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
         textCALLE.setText("");
         textCOL.setText("");
         textCP.setText("");
+        textCARGO.setText("");
         textELIMINAR.setText("");
         
         textMATERNO.setText("");
@@ -788,7 +804,5 @@ public class Informacion_cliente extends javax.swing.JDialog {
         textDELG.setText("");
     }
 
-    private void cargartabla(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }

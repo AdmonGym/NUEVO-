@@ -6,7 +6,7 @@
 package VENTANAS;
 
 import BASE_DE_DATOS.ConexionMysql;
-import LIMITADOR.BUSCAR;
+
 import com.mysql.jdbc.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,14 +19,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Paula
  */
-public class MODCLI extends javax.swing.JDialog {
+public class MODPER extends javax.swing.JDialog {
 
     private DefaultTableModel modelo;
 
     /**
      * Creates new form MODCLI
      */
-    public MODCLI(java.awt.Frame parent, boolean modal) {
+    public MODPER(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         cargartabla();
@@ -70,6 +70,8 @@ public class MODCLI extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         textTEL = new org.edisoncor.gui.textField.TextField();
         btnSELECCIONAR = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        textCARGO = new org.edisoncor.gui.textField.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -109,7 +111,7 @@ public class MODCLI extends javax.swing.JDialog {
         });
 
         btnCANCELAR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES_REDISEÑO/CANCELAR-NORM.png"))); // NOI18N
-        org.openide.awt.Mnemonics.setLocalizedText(btnCANCELAR, org.openide.util.NbBundle.getMessage(MODCLI.class, "MODCLI.btnCANCELAR.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(btnCANCELAR, org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.btnCANCELAR.text")); // NOI18N
         btnCANCELAR.setBorder(null);
         btnCANCELAR.setBorderPainted(false);
         btnCANCELAR.setContentAreaFilled(false);
@@ -142,7 +144,7 @@ public class MODCLI extends javax.swing.JDialog {
             }
         });
 
-        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES_REDISEÑO/LETRERO-CLIENTES.png"))); // NOI18N
+        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES_REDISEÑO/LETRERO-PERSONAL.png"))); // NOI18N
 
         javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
         panelImage1.setLayout(panelImage1Layout);
@@ -170,7 +172,7 @@ public class MODCLI extends javax.swing.JDialog {
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(200, 216, 252));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(MODCLI.class, "MODCLI.jLabel2.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.jLabel2.text")); // NOI18N
 
         textNOMBRES.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,7 +182,7 @@ public class MODCLI extends javax.swing.JDialog {
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(200, 216, 252));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel14, org.openide.util.NbBundle.getMessage(MODCLI.class, "MODCLI.jLabel14.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel14, org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.jLabel14.text")); // NOI18N
 
         textPATERNO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,13 +192,13 @@ public class MODCLI extends javax.swing.JDialog {
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(200, 216, 252));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel12, org.openide.util.NbBundle.getMessage(MODCLI.class, "MODCLI.jLabel12.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel12, org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.jLabel12.text")); // NOI18N
 
-        textMATERNO.setText(org.openide.util.NbBundle.getMessage(MODCLI.class, "MODCLI.textMATERNO.text")); // NOI18N
+        textMATERNO.setText(org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.textMATERNO.text")); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(200, 216, 252));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel6, org.openide.util.NbBundle.getMessage(MODCLI.class, "MODCLI.jLabel6.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel6, org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.jLabel6.text")); // NOI18N
 
         textCALLE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,7 +208,7 @@ public class MODCLI extends javax.swing.JDialog {
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(200, 216, 252));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel15, org.openide.util.NbBundle.getMessage(MODCLI.class, "MODCLI.jLabel15.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel15, org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.jLabel15.text")); // NOI18N
 
         textNUM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,7 +218,7 @@ public class MODCLI extends javax.swing.JDialog {
 
         jLabel16.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(200, 216, 252));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel16, org.openide.util.NbBundle.getMessage(MODCLI.class, "MODCLI.jLabel16.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel16, org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.jLabel16.text")); // NOI18N
 
         textCOL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +228,7 @@ public class MODCLI extends javax.swing.JDialog {
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(200, 216, 252));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel11, org.openide.util.NbBundle.getMessage(MODCLI.class, "MODCLI.jLabel11.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel11, org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.jLabel11.text")); // NOI18N
 
         textDELG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -236,7 +238,7 @@ public class MODCLI extends javax.swing.JDialog {
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(200, 216, 252));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel17, org.openide.util.NbBundle.getMessage(MODCLI.class, "MODCLI.jLabel17.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel17, org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.jLabel17.text")); // NOI18N
 
         textCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,7 +248,7 @@ public class MODCLI extends javax.swing.JDialog {
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(200, 216, 252));
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(MODCLI.class, "MODCLI.jLabel5.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.jLabel5.text")); // NOI18N
 
         textTEL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,10 +256,20 @@ public class MODCLI extends javax.swing.JDialog {
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(btnSELECCIONAR, org.openide.util.NbBundle.getMessage(MODCLI.class, "MODCLI.btnSELECCIONAR.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(btnSELECCIONAR, org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.btnSELECCIONAR.text")); // NOI18N
         btnSELECCIONAR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSELECCIONARActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(200, 216, 252));
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(MODPER.class, "MODPER.jLabel3.text")); // NOI18N
+
+        textCARGO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textCARGOActionPerformed(evt);
             }
         });
 
@@ -312,7 +324,7 @@ public class MODCLI extends javax.swing.JDialog {
                                 .addComponent(btnCERRAR)
                                 .addGap(86, 86, 86))
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(panel1Layout.createSequentialGroup()
@@ -338,7 +350,12 @@ public class MODCLI extends javax.swing.JDialog {
                                         .addGap(18, 18, 18)
                                         .addComponent(textBUSCAR1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(91, 91, 91)
-                                        .addComponent(btnSELECCIONAR)))
+                                        .addComponent(btnSELECCIONAR))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textCARGO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(231, 231, 231)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -347,7 +364,11 @@ public class MODCLI extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textCARGO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textNOMBRES, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -410,7 +431,7 @@ public class MODCLI extends javax.swing.JDialog {
     private void btnCERRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCERRARActionPerformed
         cerrar();
         Menu m = new Menu();
-        m.setTitle("CLIENTES");
+        m.setTitle("MENU");
         m.setLocationRelativeTo(null);
         m.setVisible(true);
     }
@@ -459,12 +480,12 @@ public class MODCLI extends javax.swing.JDialog {
     private void textTELActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTELActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textTELActionPerformed
-    
+
     private void btnMODIFICARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMODIFICARActionPerformed
 
         ConexionMysql mysql = new ConexionMysql();
         com.mysql.jdbc.Connection cn = (com.mysql.jdbc.Connection) mysql.Conectar();
-        String nom, apep, apem, ca, nu, col, del, cp, tel;
+        String nom, apep, apem, ca, nu, col, del, cp, tel, car;
         String sSQL = "";
         String mensaje = "";
         nom = textNOMBRES.getText();
@@ -476,7 +497,8 @@ public class MODCLI extends javax.swing.JDialog {
         del = textDELG.getText();
         cp = textCP.getText();
         tel = textTEL.getText();
-        sSQL = "UPDATE cliente SET Nombres= ?, ApellidoPaterno = ?, ApellidoMaterno = ?, Calle = ?, Numero= ?, Colonia= ?, Delegacion= ?, CP = ?, Telefono= ? WHERE IDCliente=" + id_actualizar;
+        car = textCARGO.getText();
+        sSQL = "UPDATE empleado SET Nombres= ?, ApellidoPaterno = ?, ApellidoMaterno = ?, Calle = ?, Numero= ?, Colonia= ?, Delegacion= ?, CP = ?, Telefono= ?, Cargo = ? WHERE IDEmpleado=" + id_actualizar;
         mensaje = "¡Los Datos han sido modificados exitosamente!";
         try {
             com.mysql.jdbc.PreparedStatement pst = (com.mysql.jdbc.PreparedStatement) cn.prepareStatement(sSQL);
@@ -489,7 +511,7 @@ public class MODCLI extends javax.swing.JDialog {
             pst.setString(7, del);
             pst.setString(8, cp);
             pst.setString(9, tel);
-
+            pst.setString(10, car);
             int n = pst.executeUpdate();
 
             if (n > 0) {
@@ -523,6 +545,10 @@ public class MODCLI extends javax.swing.JDialog {
         }// TODO add your handling code here:
     }//GEN-LAST:event_btnSELECCIONARActionPerformed
 
+    private void textCARGOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textCARGOActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textCARGOActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -540,20 +566,21 @@ public class MODCLI extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MODCLI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MODPER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MODCLI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MODPER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MODCLI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MODPER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MODCLI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MODPER.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                MODCLI dialog = new MODCLI(new javax.swing.JFrame(), true);
+                MODPER dialog = new MODPER(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -578,6 +605,7 @@ public class MODCLI extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
@@ -586,6 +614,7 @@ public class MODCLI extends javax.swing.JDialog {
     private javax.swing.JTable tblDatos;
     private org.edisoncor.gui.textField.TextField textBUSCAR1;
     private org.edisoncor.gui.textField.TextField textCALLE;
+    private org.edisoncor.gui.textField.TextField textCARGO;
     private org.edisoncor.gui.textField.TextField textCOL;
     private org.edisoncor.gui.textField.TextField textCP;
     private org.edisoncor.gui.textField.TextField textDELG;
@@ -598,22 +627,22 @@ public class MODCLI extends javax.swing.JDialog {
 
     private void BUSCAR(String valor) {
 
-        String[] titulos = {"ID", "Nombre", "ApellidoP", "ApellidoM", "Calle", "#", "Col", "Del", "CP", "TEL"};
-        String[] registro = new String[10];
+        String[] titulos = {"ID", "Nombre", "ApellidoP", "ApellidoM", "Calle", "#", "Col", "Del", "CP", "Tel", "Cargo"};
+        String[] registro = new String[11];
         String sSQL = "";
         modelo = new DefaultTableModel(null, titulos);
 
         ConexionMysql mysql = new ConexionMysql();
         com.mysql.jdbc.Connection cn = (com.mysql.jdbc.Connection) mysql.Conectar();
 
-        sSQL = "SELECT IDCliente,Nombres,ApellidoPaterno,ApellidoMaterno,Calle,Numero,Colonia,Delegacion,CP,Telefono FROM cliente "
+        sSQL = "SELECT IDEmpleado,Nombres,ApellidoPaterno,ApellidoMaterno,Calle,Numero,Colonia,Delegacion,CP,Telefono, Cargo FROM empleado "
                 + "WHERE CONCAT(Nombres, ' ',ApellidoPaterno) LIKE '%" + valor + "%'";
         try {
             com.mysql.jdbc.Statement st = (com.mysql.jdbc.Statement) cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
 
             while (rs.next()) {
-                registro[0] = rs.getString("IDCliente");
+                registro[0] = rs.getString("IDEmpleado");
                 registro[1] = rs.getString("Nombres");
                 registro[2] = rs.getString("ApellidoPaterno");
                 registro[3] = rs.getString("ApellidoMaterno");
@@ -623,6 +652,7 @@ public class MODCLI extends javax.swing.JDialog {
                 registro[7] = rs.getString("Delegacion");
                 registro[8] = rs.getString("CP");
                 registro[9] = rs.getString("Telefono");
+                registro[10] = rs.getString("Cargo");
                 modelo.addRow(registro);
             }
             tblDatos.setModel(modelo);
@@ -640,7 +670,7 @@ public class MODCLI extends javax.swing.JDialog {
         textCALLE.setEnabled(true);
         textCOL.setEnabled(true);
         textCP.setEnabled(true);
-        
+        textCARGO.setEnabled(true);
         textMATERNO.setEnabled(true);
         textNOMBRES.setEnabled(true);
         textNUM.setEnabled(true);
@@ -650,23 +680,24 @@ public class MODCLI extends javax.swing.JDialog {
         btnSELECCIONAR.setEnabled(true);
         btnCANCELAR.setEnabled(true);
     }
-String id_actualizar = "";
-     void ModificarUsuarios(String id) {
-        
+    String id_actualizar = "";
+
+    void ModificarUsuarios(String id) {
+
         String sSQL = "";
-        String no = "", apep =  "", apem = "", ca = "", nu = "", col = "", del = "", cp = "", tel = "";
+        String no = "", apep = "", apem = "", ca = "", nu = "", col = "", del = "", cp = "", tel = "", car = "";
         ConexionMysql mysql = new ConexionMysql();
         com.mysql.jdbc.Connection cn = (com.mysql.jdbc.Connection) mysql.Conectar();
 
-        sSQL = "SELECT IDCliente,Nombres,ApellidoPaterno,ApellidoMaterno,Calle,Numero,Colonia,Delegacion,CP,Telefono FROM cliente "
-                + "WHERE IDCliente = " + id;
+        sSQL = "SELECT IDEmpleado,Nombres,ApellidoPaterno,ApellidoMaterno,Calle,Numero,Colonia,Delegacion,CP,Telefono,Cargo FROM empleado "
+                + "WHERE IDEmpleado = " + id;
 
         try {
             Statement st = (Statement) cn.createStatement();
             ResultSet rs = st.executeQuery(sSQL);
 
             while (rs.next()) {
-                
+
                 no = rs.getString("Nombres");
                 apep = rs.getString("ApellidoPaterno");
                 apem = rs.getString("ApellidoMaterno");
@@ -676,8 +707,9 @@ String id_actualizar = "";
                 del = rs.getString("Delegacion");
                 cp = rs.getString("CP");
                 tel = rs.getString("Telefono");
+                car = rs.getString("Cargo");
             }
-            
+
             textNOMBRES.setText(no);
             textPATERNO.setText(apep);
             textMATERNO.setText(apem);
@@ -687,6 +719,7 @@ String id_actualizar = "";
             textDELG.setText(del);
             textCP.setText(cp);
             textTEL.setText(tel);
+            textCARGO.setText(car);
             id_actualizar = id;
 
         } catch (SQLException ex) {
@@ -696,18 +729,18 @@ String id_actualizar = "";
     }
 
     void cargartabla() {
-        String[] titulos = {"ID", "Nombre", "ApellidoP", "ApellidoM", "Calle", "#", "Col", "Del", "CP", "TEL"};
-        String[] registro = new String[10];
+        String[] titulos = {"ID", "Nombre", "ApellidoP", "ApellidoM", "Calle", "#", "Col", "Del", "CP", "TEL", "Cargo"};
+        String[] registro = new String[11];
         DefaultTableModel modelo;
         modelo = new DefaultTableModel(null, titulos);
         ConexionMysql mysql = new ConexionMysql();
         Connection cn = mysql.Conectar();
         try {
 
-            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("SELECT IDCliente,Nombres,ApellidoPaterno,ApellidoMaterno,Calle,Numero,Colonia,Delegacion,CP,Telefono FROM cliente");
+            PreparedStatement pst = (PreparedStatement) cn.prepareStatement("SELECT IDEmpleado,Nombres,ApellidoPaterno,ApellidoMaterno,Calle,Numero,Colonia,Delegacion,CP,Telefono,Cargo FROM empleado");
             ResultSet res = pst.executeQuery();
             while (res.next()) {
-                registro[0] = res.getString("IDCliente");
+                registro[0] = res.getString("IDEmpleado");
                 registro[1] = res.getString("Nombres");
                 registro[2] = res.getString("ApellidoPaterno");
                 registro[3] = res.getString("ApellidoMaterno");
@@ -717,6 +750,7 @@ String id_actualizar = "";
                 registro[7] = res.getString("Delegacion");
                 registro[8] = res.getString("CP");
                 registro[9] = res.getString("Telefono");
+                registro[10] = res.getString("Cargo");
 
                 modelo.addRow(registro);
             }
@@ -730,19 +764,18 @@ String id_actualizar = "";
         textCALLE.setEnabled(false);
         textCOL.setEnabled(false);
         textCP.setEnabled(false);
-        
+        textCARGO.setEnabled(false);
         textMATERNO.setEnabled(false);
         textNOMBRES.setEnabled(false);
         textNUM.setEnabled(false);
         textPATERNO.setEnabled(false);
         textTEL.setEnabled(false);
         textDELG.setEnabled(false);
-        
-        
+
         textCALLE.setText("");
         textCOL.setText("");
         textCP.setText("");
-        
+        textCARGO.setText("");
         textMATERNO.setText("");
         textNOMBRES.setText("");
         textNUM.setText("");

@@ -33,7 +33,6 @@ public class Menu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         panel2 = new org.edisoncor.gui.panel.Panel();
         jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,25 +129,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Gill Sans Ultra Bold", 1, 18)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(40, 40, 225));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES_REDISEÑO/mancuernas249X140.png"))); // NOI18N
-        jButton6.setText(" Curso");
-        jButton6.setBorder(null);
-        jButton6.setBorderPainted(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setIconTextGap(-3);
-        jButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGENES_REDISEÑO/mancuernas229X129.png"))); // NOI18N
-        jButton6.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -166,9 +146,7 @@ public class Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(107, 107, 107)
-                        .addComponent(jButton6)
-                        .addGap(127, 127, 127)))
+                        .addGap(483, 483, 483)))
                 .addComponent(jButton2)
                 .addGap(79, 79, 79))
         );
@@ -182,10 +160,8 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(40, 40, 40)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1))
-                    .addComponent(jButton6))
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addContainerGap())
@@ -211,7 +187,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         cerrar();
-        Personal dialog = new Personal(new javax.swing.JFrame(), true);
+        Informacion_personal2 dialog = new Informacion_personal2(new javax.swing.JFrame(), true);
         dialog.setTitle("PERSONAL");
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
@@ -226,20 +202,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cerrar();
-        Clientes dialog = new Clientes(new javax.swing.JFrame(), true);
+        Informacion_cliente dialog = new Informacion_cliente(new javax.swing.JFrame(), true);
         dialog.setTitle("CLIENTES");
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        cerrar();
-        Menu_Cursos dialog = new Menu_Cursos (new javax.swing.JFrame(), true);
-        dialog.setTitle("MENU_CURSOS");
-        dialog.setLocationRelativeTo(null);
-        dialog.setVisible(true);
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,7 +251,6 @@ private void cerrar(){
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private org.edisoncor.gui.panel.Panel panel1;
     private org.edisoncor.gui.panel.Panel panel2;
     // End of variables declaration//GEN-END:variables
