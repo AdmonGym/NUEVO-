@@ -55,7 +55,7 @@ public class MODCLI extends javax.swing.JDialog {
         textCOL.setDocument(new LIMITARCARACTER(textCOL, 15));
         textDELG.setDocument(new LIMITARCARACTER(textDELG, 25));
         textCP.setDocument(new LIMITARCARACTER(textCP, 5));
-        textTEL.setDocument(new LIMITARCARACTER(textTEL, 11));
+        textTEL.setDocument(new LIMITARCARACTER(textTEL, 10));
     }
 
     public void SLETRAS(JTextField a) {

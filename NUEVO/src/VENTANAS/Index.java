@@ -225,7 +225,7 @@ public Timer objetotimer;
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "El nombre de usuario y/o contrasenia no son validos.");
+                    JOptionPane.showMessageDialog(null, "El nombre de usuario y/o contraseña no son validos.");
 
                 }
 

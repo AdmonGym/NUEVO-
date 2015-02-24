@@ -56,7 +56,7 @@ public void LIMITAR() {
         textCOL.setDocument(new LIMITARCARACTER(textCOL, 15));
         textDELG.setDocument(new LIMITARCARACTER(textDELG, 25));
         textCP.setDocument(new LIMITARCARACTER(textCP, 5));
-        textTEL.setDocument(new LIMITARCARACTER(textTEL, 11));
+        textTEL.setDocument(new LIMITARCARACTER(textTEL, 10));
     }
 
     public void SLETRAS(JTextField a) {
@@ -576,8 +576,9 @@ public void LIMITAR() {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

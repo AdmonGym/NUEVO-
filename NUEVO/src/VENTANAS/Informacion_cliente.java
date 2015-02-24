@@ -63,7 +63,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
         textCOL.setDocument(new LIMITARCARACTER(textCOL, 15));
         textDELG.setDocument(new LIMITARCARACTER(textDELG, 25));
         textCP.setDocument(new LIMITARCARACTER(textCP, 5));
-        textTEL.setDocument(new LIMITARCARACTER(textTEL, 11));
+        textTEL.setDocument(new LIMITARCARACTER(textTEL, 10));
     }
 
     public void SLETRAS(JTextField a) {
@@ -513,7 +513,7 @@ public class Informacion_cliente extends javax.swing.JDialog {
                         .addComponent(textMATERNO, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12)
                         .addComponent(jLabel14)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(textCALLE, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
